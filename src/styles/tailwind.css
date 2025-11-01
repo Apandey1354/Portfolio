@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #00FFE0; /* neon-cyan */
+    --color-primary-foreground: #141E30; /* dark-navy */
+    
+    /* Secondary Colors */
+    --color-secondary: #1B1F3B; /* deep-navy */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #FF007F; /* magenta */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Background Colors */
+    --color-background: #141E30; /* rich-dark */
+    --color-foreground: #FFFFFF; /* white */
+    
+    /* Surface Colors */
+    --color-card: #1E2A4A; /* surface-elevation */
+    --color-card-foreground: #FFFFFF; /* white */
+    --color-popover: #1E2A4A; /* surface-elevation */
+    --color-popover-foreground: #FFFFFF; /* white */
+    
+    /* Muted Colors */
+    --color-muted: #1B1F3B; /* deep-navy */
+    --color-muted-foreground: #94A3B8; /* text-secondary */
+    
+    /* Border & Input */
+    --color-border: rgba(255, 255, 255, 0.1); /* subtle-white */
+    --color-input: #1E2A4A; /* surface-elevation */
+    --color-ring: #00FFE0; /* neon-cyan */
+    
+    /* Status Colors */
+    --color-success: #10B981; /* emerald-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #F59E0B; /* amber-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    --color-error: #EF4444; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #EF4444; /* red-500 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Additional Brand Colors */
+    --color-surface: #1E2A4A; /* surface-elevation */
+    --color-text-primary: #FFFFFF; /* white */
+    --color-text-secondary: #94A3B8; /* slate-400 */
+    --color-professional-blue: #4A90E2; /* blue-500 */
+    --color-success-green: #00FF88; /* green-400 */
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(27, 31, 59, 0.1); /* deep-navy-10 */
+    --glass-border: rgba(0, 255, 224, 0.3); /* neon-cyan-30 */
+    
+    /* Shadows & Glows */
+    --glow-primary: 0 0 20px rgba(0, 255, 224, 0.1); /* neon-cyan-glow */
+    --glow-accent: 0 0 20px rgba(255, 0, 127, 0.1); /* magenta-glow */
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3); /* dark-shadow */
+    --shadow-elevated: 0 8px 32px rgba(0, 255, 224, 0.1); /* elevated-glow */
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* Custom Glassmorphism Utilities */
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+  
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+  
+  /* Orbital Animation Keyframes */
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+  }
+  
+  @keyframes particle-float {
+    0%, 100% {
+      transform: translateY(0px);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(0, 255, 224, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(0, 255, 224, 0.3);
+    }
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  /* Utility Classes */
+  .animate-orbit {
+    animation: orbit 20s linear infinite;
+  }
+  
+  .animate-particle-float {
+    animation: particle-float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-typing {
+    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--color-primary);
+  }
+  
+  /* Scroll Animations */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .fade-in-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Terminal Styles */
+  .terminal {
+    background: #0a0a0a;
+    color: #00ff00;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .terminal-cursor::after {
+    content: '█';
+    animation: blink 1s infinite;
+  }
+  
+  /* Holographic Effects */
+  .holographic {
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 224, 0.1) 50%, transparent 70%);
+    background-size: 200% 200%;
+    animation: holographic-shimmer 3s ease-in-out infinite;
+  }
+  
+  @keyframes holographic-shimmer {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+  /* 3D Transform Utilities */
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  /* Magnetic Hover Effects */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .magnetic-hover:hover {
+    transform: scale(1.05) translateZ(10px);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 224, 0.8);
+  }
+}
